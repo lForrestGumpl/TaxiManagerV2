@@ -1,0 +1,44 @@
+﻿<Window x:Class="TaxiManagerV2.ListRate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaxiManagerV2"
+        mc:Ignorable="d"
+        Title="ListRate" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="3" ItemsSource="{Binding Rates}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRate}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="№" IsReadOnly="True" Width="auto" Binding="{Binding IdRate}"/>
+                <DataGridTextColumn Header="Название тарифа"  IsReadOnly="True" Width="auto" Binding="{Binding Name }"/>
+                <DataGridTextColumn Header="Дальность действия" IsReadOnly="True" Width="auto" Binding="{Binding Range }"/>
+                <DataGridTextColumn Header="Стоимость" IsReadOnly="True" Width="*" Binding="{Binding Price}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Column="2" Grid.Row="6" VerticalAlignment="Top">
+
+            <Button Content="Добавить" Cursor="Hand"/>
+            <Button Content="Удалить" Cursor="Hand"/>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Top">
+            <Label Content="Поиск"/>
+            <TextBox Text="..."/>
+        </StackPanel>
+    </Grid>
+</Window>
