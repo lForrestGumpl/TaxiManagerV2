@@ -13,5 +13,19 @@ namespace TaxiManagerV2
         public string Sname { get; set; }
         public string RedirectionCode { get; set; }
         public string Status { get; set; }
+
+        public void CreateManager()
+        {
+            IdManager = GetNextId("manager_table");
+            CreateNewManager(Fname, Sname, RedirectionCode, Status);
+        }
+        public void Delete()
+        {
+            DeleteManager(IdManager);
+        }
+        public void Update()
+        {
+            UpdateManager(Fname, Sname, RedirectionCode, Status, IdManager);
+        }
     }
 }

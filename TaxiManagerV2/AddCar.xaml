@@ -20,20 +20,20 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
             <Label Content="Марка"/>
-            <TextBox />
+            <TextBox Text="{Binding MarkCar}"/>
             <Label Content="Кузов"/>
-            <TextBox/>
+            <TextBox Text="{Binding Bodywork}"/>
             <Label Content="Цвет"/>
-            <TextBox/>
+            <TextBox Text="{Binding ColorCar}"/>
             <Label Content="Номер"/>
-            <TextBox/>
+            <TextBox Text="{Binding NumberCar}"/>
             <Label Content="Водитель"/>
-            <TextBox/>
+            <TextBox Text="{Binding IdDriver}"/>
             <Label Content="Статус"/>
-            <ComboBox/>
+            <TextBox Text="{Binding Status}"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" VerticalAlignment="Center" >
-            <Button Content="Сохранить"/>
+            <Button Content="Сохранить" Click="SaveButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

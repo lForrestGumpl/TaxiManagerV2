@@ -19,14 +19,14 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
             <Label Content="Название тарифа"/>
-            <TextBox />
+            <TextBox  Text="{Binding Name}"/>
             <Label Content="Дальность действия"/>
-            <TextBox/>
+            <TextBox Text="{Binding Range}"/>
             <Label Content="Стоимость"/>
-            <TextBox/>
+            <TextBox Text="{Binding Price}"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
-            <Button   Content="Сохранить"/>
+            <Button   Content="Сохранить" Click="SaveButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

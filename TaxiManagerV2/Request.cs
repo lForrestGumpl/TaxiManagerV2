@@ -21,5 +21,13 @@ namespace TaxiManagerV2
             IdRequest = GetNextId("request_table");
             CreateNewRequest(Sname, Fname, Address, Driver, NumberCar);
         }
+        public void Delete()
+        {
+            DeleteRequest(IdRequest);
+        }
+        public void Update()
+        {
+            UpdateRequest(Sname, Fname, Address, Driver, NumberCar, IdRequest);
+        }
     }
 }

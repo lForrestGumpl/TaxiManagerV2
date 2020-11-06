@@ -45,5 +45,21 @@ namespace TaxiManagerV2
                 return result;
             }
         }
+        internal static bool CreateNewCar(string MarkCar, string Bodywork, string ColorCar, string IdDriver, string NumberCar, string Status)
+        {
+            string sql = "INSERT INTO car_table VALUES(0 , '"+ MarkCar + "','" + Bodywork + "','" + ColorCar + "','" + IdDriver + "','" + NumberCar + "','" + Status + "')";
+            return RunSQL(sql);
+        }
+        internal static bool DeleteCar(int idCar)
+        {
+            string sql = "DELETE FROM car_table WHERE id_car = " + idCar;
+            return RunSQL(sql);
+
+        }
+        internal static bool UpdateCar(string MarkCar, string Bodywork, string ColorCar, string IdDriver, string NumberCar, string Status, int IdCar)
+        {
+            string sql = "UPDATE car_table SET car_mark = '" + MarkCar + "',bodywork = '" +Bodywork + "', car_color = '" + ColorCar + "',driver = '" + IdDriver + "',car_number = '" + NumberCar + "',status = '" + Status +"' WHERE id_car = " + IdCar;
+            return RunSQL(sql);
+        }
     }
 }

@@ -75,5 +75,21 @@ namespace TaxiManagerV2
             if (addRequest.ShowDialog() == true)
                 Requests.Add(addRequest.edit);
         }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (requestsGrid.SelectedIndex == -1)
+                return;
+            Request request = (Request)requestsGrid.SelectedItem;
+            request.Delete();
+            Requests.Remove(request);
+            
+
+        }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            //
+        }
     }
 }

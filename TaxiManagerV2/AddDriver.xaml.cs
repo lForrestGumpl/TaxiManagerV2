@@ -19,9 +19,27 @@ namespace TaxiManagerV2
     /// </summary>
     public partial class AddDriver : Window
     {
+        public Driver edit;
         public AddDriver()
         {
             InitializeComponent();
+            edit = new Driver();
+            DataContext = edit;
+        }
+        public AddDriver(Driver edit)
+        {
+            InitializeComponent();
+            this.edit = edit;
+            DataContext = edit;
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (edit.IdDriver == 0)
+                edit.CreateDriver();
+            else
+                edit.Update();
+
         }
     }
 }

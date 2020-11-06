@@ -19,9 +19,27 @@ namespace TaxiManagerV2
     /// </summary>
     public partial class AddRate : Window
     {
+        public Rate edit;
         public AddRate()
         {
             InitializeComponent();
+            edit = new Rate();
+            DataContext = edit;
+        }
+        public AddRate(Rate edit)
+        {
+            InitializeComponent();
+            this.edit = edit;
+            DataContext = edit;
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (edit.IdRate == 0)
+                edit.CreateRate();
+            else
+                edit.Update();
+
         }
     }
 }

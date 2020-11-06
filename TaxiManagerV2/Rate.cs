@@ -12,5 +12,18 @@ namespace TaxiManagerV2
         public string Name { get; set; }
         public int Price { get; set; }
         public string Range { get; set; }
+        public void CreateRate()
+        {
+            IdRate = GetNextId("rate_table");
+            CreateNewRate(Name, Price, Range);
+        }
+        public void Delete()
+        {
+            DeleteRate(IdRate);
+        }
+        public void Update()
+        {
+            UpdateRate(Name, Price, Range, IdRate);
+        }
     }
 }

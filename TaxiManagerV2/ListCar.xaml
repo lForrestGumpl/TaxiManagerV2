@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TaxiManagerV2"
         mc:Ignorable="d"
         Title="ListCar" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -23,7 +23,7 @@
             <ColumnDefinition />
 
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="3" ItemsSource="{Binding Cars}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedCar}">
+        <DataGrid Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="4" ItemsSource="{Binding Cars}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedCar}" x:Name="carGrid">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" IsReadOnly="True" Width="auto" Binding="{Binding IdCar}"/>
                 <DataGridTextColumn Header="Марка"  IsReadOnly="True" Width="auto" Binding="{Binding MarkCar}"/>
@@ -36,12 +36,16 @@
         </DataGrid>
         <StackPanel Grid.Column="2" Grid.Row="6" VerticalAlignment="Top">
 
-            <Button Content="Добавить" Cursor="Hand"/>
-            <Button Content="Удалить" Cursor="Hand"/>
+            <Button Content="Добавить" Cursor="Hand" Margin="1 0 1 0" Click="AddButton_Click"/>
+            <Button Content="Обновить Таблицу" Cursor="Hand" Margin="1 0 1 0"/>
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Top">
-            <Label Content="Поиск"/>
-            <TextBox Text="..."/>
+            <TextBox Text="Поиск" Margin="1"/>
+            <Button Content="Найти" HorizontalAlignment="Left"/>
+        </StackPanel>
+        <StackPanel Grid.Column="3" Grid.Row="6">
+            <Button Content="Редактировать" Margin="1 0 1 0" Cursor="Hand" Click="EditButton_Click"/>
+            <Button Content="Удалить" Margin="1 0 1 0" Cursor="Hand" Click="DeleteButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

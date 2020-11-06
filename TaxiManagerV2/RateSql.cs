@@ -42,5 +42,20 @@ namespace TaxiManagerV2
                 return result;
             }
         }
+        internal static bool CreateNewRate(string Name, int Price, string Range)
+        {
+            string sql = "INSERT INTO rate_table VALUE (0, '" + Name + "', '" + Price + "','" + Range + "')";
+            return RunSQL(sql);
+        }
+        internal static bool DeleteRate(int idRate)
+        {
+            string sql = "DELETE FROM rate_table WHERE id_rate =" + idRate;
+            return RunSQL(sql);
+        }
+        internal static bool UpdateRate(string Name, int Price, string Range, int IdRate)
+        {
+            string sql = "UPDATE rate_table SET name='"+Name+ "', price='" + Price + "', distance='" + Range + "' WHERE id_rate =" +IdRate;
+            return RunSQL(sql);
+        }
     }
 }

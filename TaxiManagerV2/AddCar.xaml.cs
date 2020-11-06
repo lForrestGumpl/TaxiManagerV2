@@ -19,9 +19,27 @@ namespace TaxiManagerV2
     /// </summary>
     public partial class AddCar : Window
     {
+        public Car edit;
         public AddCar()
         {
             InitializeComponent();
+            edit = new Car();
+            DataContext = edit;
+        }
+        public AddCar(Car edit)
+        {
+            InitializeComponent();
+            this.edit = edit;
+            DataContext = edit;
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (edit.IdCar == 0)
+                edit.CreateCar();
+            else
+                edit.Update();
+
         }
     }
 }

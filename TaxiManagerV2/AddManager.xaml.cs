@@ -19,9 +19,27 @@ namespace TaxiManagerV2
     /// </summary>
     public partial class AddManager : Window
     {
+        public Manager edit;
         public AddManager()
         {
             InitializeComponent();
+            edit = new Manager();
+            DataContext = edit;
+        }
+        public AddManager(Manager edit)
+        {
+            InitializeComponent();
+            this.edit = edit;
+            DataContext = edit;
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (edit.IdManager == 0)
+                edit.CreateManager();
+            else
+                edit.Update();
+
         }
     }
 }

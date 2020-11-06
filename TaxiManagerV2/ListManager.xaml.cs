@@ -43,6 +43,27 @@ namespace TaxiManagerV2
         void SignalChanged([CallerMemberName] string name = null) =>
            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            new AddManager().ShowDialog();
+        }
 
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (managerGrid.SelectedIndex == -1)
+                return;
+            Manager manager = (Manager)managerGrid.SelectedItem;
+            AddManager addManager = new AddManager(manager);
+            addManager.ShowDialog();
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (managerGrid.SelectedIndex == -1)
+                return;
+            Manager manager = (Manager)managerGrid.SelectedItem;
+            manager.Delete();
+            Managers.Remove(manager);
+        }
     }
 }

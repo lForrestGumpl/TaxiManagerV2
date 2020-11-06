@@ -41,5 +41,22 @@ namespace TaxiManagerV2
             }
             return result;
         }
+        
+        internal static bool CreateNewManager(string Fname, string Sname, string RedirectionCode, string Status)
+        {
+            string sql = "INSERT INTO manager_table VALUE (0, '"+Fname+ "', '" + Sname + "','" + RedirectionCode + "','" + Status + "')";
+            return RunSQL(sql);
+        }
+        internal static bool DeleteManager(int idManager)
+        {
+            string sql = "DELETE FROM manager_table WHERE id_manager ="+ idManager;
+            return RunSQL(sql);
+        }
+        internal static bool UpdateManager(string Fname, string Sname, string RedirectionCode, string Status, int IdManager)
+        {
+            string sql = "UPDATE manager_table SET fname='" + Fname + "', sname='" + Sname + "', redirection_code='" + RedirectionCode + "', status='" + Status + "' WHERE id_manager= " + IdManager;
+            return RunSQL(sql);
+        }
+        
     }
 }

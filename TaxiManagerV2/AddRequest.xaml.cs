@@ -37,6 +37,9 @@ namespace TaxiManagerV2
         {
             if (edit.IdRequest == 0)
                 edit.CreateRequest();
+            else
+                edit.Update();
+            
         }
     }
 }

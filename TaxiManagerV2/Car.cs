@@ -15,5 +15,20 @@ namespace TaxiManagerV2
         public string IdDriver { get; set; }
         public string NumberCar { get; set; }
         public string Status { get; set; }
+
+        public void CreateCar()
+        {
+            IdCar = GetNextId("car_table");
+            CreateNewCar(MarkCar, Bodywork,ColorCar,IdDriver, NumberCar, Status);
+        }
+        public void Delete()
+        {
+            DeleteCar(IdCar);
+        }
+        public void Update()
+        {
+            UpdateCar(MarkCar, Bodywork, ColorCar, IdDriver, NumberCar, Status, IdCar);
+        }
+
     }
 }

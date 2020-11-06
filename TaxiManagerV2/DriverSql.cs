@@ -44,5 +44,21 @@ namespace TaxiManagerV2
                 return result;
             }
         }
+        internal static bool CreateNewDriver(string Fname,  string Sname, string Birth, int Y_drive, string P_number)
+        {
+            string sql = "INSERT INTO driver_table VALUE(0, '"+Fname+ "', '" + Sname + "','" + Birth + "','" + Y_drive + "','" + P_number + "')";
+            return RunSQL(sql);
+
+        }
+        internal static bool DeleteDriver(int idDriver)
+        {
+            string sql = "DELETE FROM driver_table WHERE id_driver =" + idDriver;
+            return RunSQL(sql);
+        }
+        internal static bool UpdateDriver(string Fname, string Sname, string Birth, int Y_drive, string P_number, int IdDriver)
+        {
+            string sql = "UPDATE driver_tabe SET fname='" + Fname + "', sname='" + Sname + "', birth='" + Birth + "', y_drive='" + Y_drive + "',p_number='" + P_number + "' WHERE id_driver = " + IdDriver;
+            return RunSQL(sql);
+        }
     }
 }

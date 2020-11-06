@@ -51,5 +51,15 @@ namespace TaxiManagerV2
             string sql = "INSERT INTO request_table VALUES (0, '"+ Sname+"', '"+ Fname+ "','" + Address + "','" + Driver + "','" + NumberCar + "')";
             return RunSQL(sql);
         }
+        protected static bool DeleteRequest(int id)
+        {
+            string sql = "DELETE FROM request_table WHERE id_request = " + id;
+            return RunSQL(sql);
+        }
+        protected static bool UpdateRequest(string Sname, string Fname, string Address, string Driver, string NumberCar, int IdRequest)
+        {
+            string sql = "UPDATE request_table SET sname = '" + Sname + "', fname = '" + Fname + "', address'" + Address + "', driver'" + Driver + "', car_number = '" + NumberCar + "' WHERE id_request =" + IdRequest;
+            return RunSQL(sql);
+        }
     }
 }
