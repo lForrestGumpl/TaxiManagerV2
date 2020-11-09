@@ -20,16 +20,15 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
             <Label Content="Фамилия клиента"/>
-            <TextBox Text="{Binding Sname}" />
+            <TextBox Text="{Binding Sname_Client}" />
             <Label Content="Имя клиента"/>
             <TextBox Text="{Binding Fname}"/>
             <Label Content="Адрес"/>
             <TextBox Text="{Binding Address}"/>
             <Label Content="Водитель"/>
-            <TextBox Text="{Binding Driver}"/>
+            <ComboBox x:Name="comboDriver" DisplayMemberPath="Sname" SelectedValue="{Binding IdDriver}" SelectedValuePath="Id_Driver"/>
             <Label Content="Номер Авто"/>
-            <TextBox Text="{Binding NumberCar}"/>
-         
+            <ComboBox x:Name="comboCar" DisplayMemberPath="NumberCar" SelectedValue="{Binding IdCar}" SelectedValuePath="Id_Car"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" VerticalAlignment="Center" >
             <Button Content="Сохранить" Click="SaveButton_Click"/>

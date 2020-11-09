@@ -23,19 +23,21 @@ namespace TaxiManagerV2
         public AddCar()
         {
             InitializeComponent();
+            comboDriver.ItemsSource = DriverSql.GetDrivers();
             edit = new Car();
             DataContext = edit;
         }
         public AddCar(Car edit)
         {
             InitializeComponent();
+            comboDriver.ItemsSource = DriverSql.GetDrivers();
             this.edit = edit;
             DataContext = edit;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (edit.IdCar == 0)
+            if (edit.Id_Car == 0)
                 edit.CreateCar();
             else
                 edit.Update();

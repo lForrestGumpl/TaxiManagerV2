@@ -23,14 +23,14 @@
             <ColumnDefinition />
 
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="4" ItemsSource="{Binding Cars}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedCar}" x:Name="carGrid">
+        <DataGrid  x:Name="carGrid" Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="4" ItemsSource="{Binding CarsVM}"  AutoGenerateColumns="False" SelectedItem="{Binding SelectedCar}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" IsReadOnly="True" Width="auto" Binding="{Binding IdCar}"/>
                 <DataGridTextColumn Header="Марка"  IsReadOnly="True" Width="auto" Binding="{Binding MarkCar}"/>
                 <DataGridTextColumn Header="Кузов" IsReadOnly="True" Width="auto" Binding="{Binding Bodywork}"/>
                 <DataGridTextColumn Header="Цвет" IsReadOnly="True" Width="auto" Binding="{Binding ColorCar}"/>
                 <DataGridTextColumn Header="Номер" IsReadOnly="True" Width="auto" Binding="{Binding NumberCar }"/>
-                <DataGridTextColumn Header="Водитель" IsReadOnly="True" Width="auto" Binding="{Binding IdDriver}"/>
+                <DataGridTextColumn Header="Водитель" IsReadOnly="True" Width="auto" Binding="{Binding Driver}"/>
                 <DataGridTextColumn Header="Статус" IsReadOnly="True" Width="*" Binding="{Binding Status}"/>
             </DataGrid.Columns>
         </DataGrid>

@@ -23,12 +23,16 @@ namespace TaxiManagerV2
         public AddRequest()
         {
             InitializeComponent();
+            comboDriver.ItemsSource = DriverSql.GetDrivers();
+            comboCar.ItemsSource = CarSql.GetCars();
             edit = new Request();
             DataContext = edit;
         }
         public AddRequest(Request edit)
         {
             InitializeComponent();
+            comboDriver.ItemsSource = DriverSql.GetDrivers();
+            comboCar.ItemsSource = CarSql.GetCars();
             this.edit = edit;
             DataContext = edit;
         }

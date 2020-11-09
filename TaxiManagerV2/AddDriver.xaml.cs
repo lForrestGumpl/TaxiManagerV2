@@ -35,7 +35,7 @@ namespace TaxiManagerV2
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (edit.IdDriver == 0)
+            if (edit.Id_Driver == 0)
                 edit.CreateDriver();
             else
                 edit.Update();

@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
         <DataGrid Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="4" AutoGenerateColumns="False" ItemsSource="{Binding Drivers}" SelectedItem="{Binding SelectedDriver}" x:Name="driversGrid">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="№" IsReadOnly="True" Width="auto" Binding="{Binding IdDriver}"/>
+                <DataGridTextColumn Header="№" IsReadOnly="True" Width="auto" Binding="{Binding Id_Driver}"/>
                 <DataGridTextColumn Header="Фамилия водителя"  IsReadOnly="True" Width="auto" Binding="{Binding Sname}"/>
                 <DataGridTextColumn Header="Имя водителя" IsReadOnly="True" Width="auto" Binding="{Binding Fname }"/>
                 <DataGridTextColumn Header="Год рождения" IsReadOnly="True" Width="auto" Binding="{Binding Birth}"/>

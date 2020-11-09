@@ -8,7 +8,7 @@ namespace TaxiManagerV2
 {
     public class Driver : DriverSql
     {
-        public int IdDriver { get; set; }
+        public int Id_Driver { get; set; }
         public string Fname { get; set; }
         public string Sname { get; set; }
         public string Birth { get; set; }
@@ -17,16 +17,16 @@ namespace TaxiManagerV2
 
         public void CreateDriver()
         {
-            IdDriver = GetNextId("driver_table");
+            Id_Driver = GetNextId("driver_table");
             CreateNewDriver(Fname, Sname, Birth, Y_drive, P_number);
         }
         public void Delete()
         {
-            DeleteDriver(IdDriver);
+            DeleteDriver(Id_Driver);
         }
         public void Update()
         {
-            UpdateDriver(Fname, Sname, Birth, Y_drive, P_number, IdDriver);
+            UpdateDriver(Fname, Sname, Birth, Y_drive, P_number, Id_Driver);
         }
     }
 }

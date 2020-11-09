@@ -22,7 +22,7 @@ namespace TaxiManagerV2
     public partial class ListCar : Window, INotifyPropertyChanged
     {
         public Car selectedCar;
-        public List<Car> Cars { get; set; }
+        public List<CarViewModel> CarsVM { get; set; }
         public Car SelectedCar
         {
             get => selectedCar;
@@ -36,8 +36,25 @@ namespace TaxiManagerV2
         {
             InitializeComponent();
             DB dB = new DB();
-            Cars = CarSql.GetCars();
-            DataContext = this;
+            var Cars = CarSql.GetCars();
+            var Drivers = DriverSql.GetDrivers();
+            var query =
+                from car in Cars
+                from driver in Drivers
+                where car.IdDriver == driver.Id_Driver
+                select new CarViewModel
+                {
+                    IdCar = car.Id_Car,
+                    MarkCar = car.MarkCar,
+                    Bodywork = car.Bodywork,
+                    ColorCar = car.ColorCar,
+                    NumberCar = car.NumberCar,
+                    Status = car.Status,
+                    Driver = driver.Sname
+                };
+            //DataContext = this;
+            CarsVM = new List<CarViewModel>(query);
+            carGrid.ItemsSource = CarsVM;
         }
         public event PropertyChangedEventHandler PropertyChanged;
         void SignalChanged([CallerMemberName] string name = null) =>
@@ -45,7 +62,24 @@ namespace TaxiManagerV2
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            new AddCar().ShowDialog();
+            AddCar addCar = new AddCar();
+            if (addCar.ShowDialog() == true)
+            {
+                var Drivers = DriverSql.GetDrivers();
+
+                CarViewModel carViewModel = new CarViewModel
+                {
+                    IdCar = addCar.edit.Id_Car,
+                    MarkCar = addCar.edit.MarkCar,
+                    Bodywork = addCar.edit.Bodywork,
+                    ColorCar = addCar.edit.ColorCar,
+                    NumberCar = addCar.edit.NumberCar,
+                    Driver = Drivers.FirstOrDefault(x => x.Id_Driver == addCar.edit.IdDriver).Sname
+                };
+
+                CarsVM.Add(carViewModel);
+                
+            }
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -61,9 +95,11 @@ namespace TaxiManagerV2
         {
             if (carGrid.SelectedIndex == -1)
                 return;
-            Car car = (Car)carGrid.SelectedItem;
+
+            CarViewModel carViewModel = (CarViewModel)carGrid.SelectedItem;
+            Car car = CarSql.GetCarById(carViewModel.IdCar);
             car.Delete();
-            Cars.Remove(car);
+            CarsVM.Remove(carViewModel);
         }
     }
 }

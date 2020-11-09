@@ -31,34 +31,32 @@
                 <MenuItem Header="Тарифы" Click="MenuItem_Click3"/>
                 <MenuItem Header="Диспетчеры" Click="MenuItem_Click2" />
             </MenuItem>
+            <MenuItem Header="Действия">
+                <MenuItem Header="Вывести на печать" Click="PrintButton_Click"/>
+                <MenuItem Header="Создать резервную копию" Click="BackupButton_Click"/>
+            </MenuItem>
         </Menu>
         <DataGrid x:Name="requestsGrid" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="4" ItemsSource="{Binding Requests}"
                   AutoGenerateColumns="False" SelectedItem="{Binding SelectedRequest}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" IsReadOnly="True" Width="auto" Binding="{Binding IdRequest}"/>
                 <DataGridTextColumn Header="Имя клиента"  IsReadOnly="True" Width="auto" Binding="{Binding Fname}"/>
-                <DataGridTextColumn Header="Фамилия клиента" IsReadOnly="True" Width="auto" Binding="{Binding Sname}"/>
+                <DataGridTextColumn Header="Фамилия клиента" IsReadOnly="True" Width="auto" Binding="{Binding Sname_Client}"/>
                 <DataGridTextColumn Header="Адрес" IsReadOnly="True" Width="auto" Binding="{Binding Address}"/>
                 <DataGridTextColumn Header="Водитель" IsReadOnly="True" Width="auto" Binding="{Binding Driver}"/>
-                <DataGridTextColumn Header="Номер Авто" IsReadOnly="True" Width="auto" Binding="{Binding NumberCar}"/>
-                <DataGridTextColumn Header="Дата создания" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Номер Авто" IsReadOnly="True" Width="auto" Binding="{Binding Car}"/>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Column="0" Grid.Row="5">
-            <Label/>
-            <Button Content="Добавить" Cursor="Hand" Click="AddButton_Click"/>
-            <Label/>
-            <Button Content="Удалить" Click="DeleteButton_Click" Cursor="Hand"/>
-            <Label/>
-            <Button Content="Обновить Таблицу" Cursor="Hand" Click="UpdateButton_Click" />
-            <Label/>
+            <Button Content="Добавить" Cursor="Hand" Click="AddButton_Click" Margin="5"/>
+            <Button Content="Удалить" Click="DeleteButton_Click" Cursor="Hand" Margin="5"/>
+            <Button Content="Обновить Таблицу" Cursor="Hand" Click="UpdateButton_Click" Margin="5" />
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Margin="10 ">
-        <Label />
-        <TextBox Text="Поиск" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
-        <Label />
-        <Button Content="Найти"  VerticalAlignment="Top" HorizontalAlignment="Right"/>
-        <Label Grid.Row="7"/>
+        <TextBox Text="Поиск" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Top"/>
+
+            <Button Content="Найти"  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10"/>
+        
         </StackPanel>
     </Grid>
 </Window>

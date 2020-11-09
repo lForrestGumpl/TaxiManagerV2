@@ -9,10 +9,11 @@ namespace TaxiManagerV2
 {
     public class RequestSql : DB
     {
+        
         internal static List<Request> GetRequests()
         {
             List<Request> result = new List<Request>();
-            string sql = "SELECT id_request, sname, fname, address, driver, car_number  FROM request_table"; //id_request, sname, fname, address, driver, car_number
+            string sql = "SELECT id_request, sname, fname, address, id_driver, id_car FROM request_table"; //id_request, sname, fname, address, driver, car_number
             Request last = null;
             //int requestid = 0;
             Dictionary<int, Request> requests = new Dictionary<int, Request>();
@@ -30,13 +31,11 @@ namespace TaxiManagerV2
                             {
                                 last = new Request();
                                 last.IdRequest = dr.GetInt32("id_request");
-                                last.Sname = dr.GetString("sname");
+                                last.Sname_Client = dr.GetString("sname");
                                 last.Fname = dr.GetString("fname");
                                 last.Address = dr.GetString("address");
-                                last.Driver = dr.GetString("driver");
-                                last.NumberCar = dr.GetString("car_number");
-                                // Driver driver = new Driver();
-                                //driver.Fname = dr.GetString("fname");
+                                last.IdDriver = dr.GetInt32("id_driver");
+                                last.IdCar = dr.GetInt32("id_car");
                                 result.Add(last);
                             }
                         }
@@ -46,9 +45,9 @@ namespace TaxiManagerV2
             }
             return result;
         }
-        protected static bool CreateNewRequest(string Sname, string Fname, string Address, string Driver, string NumberCar)
+        protected static bool CreateNewRequest(string Sname_Client, string Fname, string Address, int IdDriver, int IdCar)
         {
-            string sql = "INSERT INTO request_table VALUES (0, '"+ Sname+"', '"+ Fname+ "','" + Address + "','" + Driver + "','" + NumberCar + "')";
+            string sql = "INSERT INTO request_table VALUES (0, '"+ Sname_Client + "', '"+ Fname+ "','" + Address + "','" + IdDriver + "','" + IdCar + "')";
             return RunSQL(sql);
         }
         protected static bool DeleteRequest(int id)
@@ -56,10 +55,40 @@ namespace TaxiManagerV2
             string sql = "DELETE FROM request_table WHERE id_request = " + id;
             return RunSQL(sql);
         }
-        protected static bool UpdateRequest(string Sname, string Fname, string Address, string Driver, string NumberCar, int IdRequest)
+        protected static bool UpdateRequest(string Sname_Client, string Fname, string Address, int IdDriver, int IdCar, int IdRequest)
         {
-            string sql = "UPDATE request_table SET sname = '" + Sname + "', fname = '" + Fname + "', address'" + Address + "', driver'" + Driver + "', car_number = '" + NumberCar + "' WHERE id_request =" + IdRequest;
+            string sql = "UPDATE request_table SET sname = '" + Sname_Client + "', fname = '" + Fname + "', address'" + Address + "', id_driver'" + IdDriver + "', id_car = '" + IdCar + "' WHERE id_request =" + IdRequest;
             return RunSQL(sql);
+        }
+        internal static Request GetRequestById(int IdRequest)
+        {
+            Request request = null;
+            string sql = "SELECT id_request, sname, fname, address, id_driver, id_car FROM request_table WHERE id_request=" + IdRequest;
+            if (OpenConnection())
+            {
+                using (var mc = new MySqlCommand(sql, connection))
+                {
+                    using (var dr = mc.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+
+                            request = new Request
+                            {
+                                IdRequest = dr.GetInt32("id_request"),
+                                Sname_Client = dr.GetString("sname"),
+                                Fname = dr.GetString("fname"),
+                                Address = dr.GetString("address"),
+                                IdDriver = dr.GetInt32("id_driver"),
+                                IdCar = dr.GetInt32("id_car"),
+                            };
+                        }
+                    }
+                }
+                CloseConnection();
+            }
+            return request;
+
         }
     }
 }

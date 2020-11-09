@@ -28,7 +28,7 @@
             <Label Content="Номер"/>
             <TextBox Text="{Binding NumberCar}"/>
             <Label Content="Водитель"/>
-            <TextBox Text="{Binding IdDriver}"/>
+            <ComboBox Name="comboDriver" DisplayMemberPath="Sname" SelectedValue="{Binding IdDriver}" SelectedValuePath="Id_Driver"/>
             <Label Content="Статус"/>
             <TextBox Text="{Binding Status}"/>
         </StackPanel>

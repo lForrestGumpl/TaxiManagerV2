@@ -8,26 +8,26 @@ namespace TaxiManagerV2
 {
    public class Car: CarSql
     {
-        public int IdCar { get; set; }
+        public int Id_Car { get; set; }
         public string MarkCar { get; set; }
         public string Bodywork { get; set; }
         public string ColorCar { get; set; }
-        public string IdDriver { get; set; }
+        public int IdDriver { get; set; }
         public string NumberCar { get; set; }
         public string Status { get; set; }
 
         public void CreateCar()
         {
-            IdCar = GetNextId("car_table");
+            Id_Car = GetNextId("car_table");
             CreateNewCar(MarkCar, Bodywork,ColorCar,IdDriver, NumberCar, Status);
         }
         public void Delete()
         {
-            DeleteCar(IdCar);
+            DeleteCar(Id_Car);
         }
         public void Update()
         {
-            UpdateCar(MarkCar, Bodywork, ColorCar, IdDriver, NumberCar, Status, IdCar);
+            UpdateCar(MarkCar, Bodywork, ColorCar, IdDriver, NumberCar, Status, Id_Car);
         }
 
     }

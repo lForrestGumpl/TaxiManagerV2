@@ -12,7 +12,7 @@ namespace TaxiManagerV2
         internal static List<Car> GetCars()
         {
             List<Car> result = new List<Car>();
-            string sql = " SELECT id_car, car_mark, bodywork, car_color, driver, car_number, status  FROM car_table ";
+            string sql = " SELECT id_car, car_mark, bodywork, car_color, id_driver, car_number, status  FROM car_table ";
             Car last = null;
             {
                 if (OpenConnection())
@@ -23,16 +23,16 @@ namespace TaxiManagerV2
                         {
                             while (dr.Read())
                             {
-                                if (last != null && last.IdCar != dr.GetInt32("id_car"))
+                                if (last != null && last.Id_Car != dr.GetInt32("id_car"))
                                     last = null;
                                 if (last == null)
                                 {
                                     last = new Car();
-                                    last.IdCar = dr.GetInt32("id_car");
+                                    last.Id_Car = dr.GetInt32("id_car");
                                     last.MarkCar = dr.GetString("car_mark");
                                     last.Bodywork = dr.GetString("bodywork");
                                     last.ColorCar = dr.GetString("car_color");
-                                    last.IdDriver = dr.GetString("driver");
+                                    last.IdDriver = dr.GetInt32("id_driver");
                                     last.NumberCar = dr.GetString("car_number");
                                     last.Status = dr.GetString("status");
                                     result.Add(last);
@@ -45,7 +45,7 @@ namespace TaxiManagerV2
                 return result;
             }
         }
-        internal static bool CreateNewCar(string MarkCar, string Bodywork, string ColorCar, string IdDriver, string NumberCar, string Status)
+        internal static bool CreateNewCar(string MarkCar, string Bodywork, string ColorCar, int IdDriver, string NumberCar, string Status)
         {
             string sql = "INSERT INTO car_table VALUES(0 , '"+ MarkCar + "','" + Bodywork + "','" + ColorCar + "','" + IdDriver + "','" + NumberCar + "','" + Status + "')";
             return RunSQL(sql);
@@ -56,10 +56,39 @@ namespace TaxiManagerV2
             return RunSQL(sql);
 
         }
-        internal static bool UpdateCar(string MarkCar, string Bodywork, string ColorCar, string IdDriver, string NumberCar, string Status, int IdCar)
+        internal static bool UpdateCar(string MarkCar, string Bodywork, string ColorCar, int IdDriver, string NumberCar, string Status, int IdCar)
         {
-            string sql = "UPDATE car_table SET car_mark = '" + MarkCar + "',bodywork = '" +Bodywork + "', car_color = '" + ColorCar + "',driver = '" + IdDriver + "',car_number = '" + NumberCar + "',status = '" + Status +"' WHERE id_car = " + IdCar;
+            string sql = "UPDATE car_table SET car_mark = '" + MarkCar + "',bodywork = '" +Bodywork + "', car_color = '" + ColorCar + "', id_driver = '" + IdDriver + "',car_number = '" + NumberCar + "',status = '" + Status +"' WHERE id_car = " + IdCar;
             return RunSQL(sql);
+        }
+        internal static Car GetCarById(int Id_Car)
+        {
+            Car car = null;
+            string sql = "SELECT id_car, car_mark, bodywork, car_color, id_driver, car_number, status  FROM car_table WHERE id_car=" + Id_Car;
+            if (OpenConnection())
+            {
+                using (MySqlCommand mc = new MySqlCommand(sql, connection))
+                {
+                    using (MySqlDataReader dr = mc.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            car = new Car
+                            {
+                                Id_Car = dr.GetInt32("id_car"),
+                                MarkCar = dr.GetString("car_mark"),
+                                Bodywork = dr.GetString("bodywork"),
+                                ColorCar = dr.GetString("car_color"),
+                                IdDriver = dr.GetInt32("id_driver"),
+                                NumberCar = dr.GetString("car_number"),
+                                Status = dr.GetString("status"),
+                            };
+                        }
+                    }
+                }
+                CloseConnection();
+            }
+            return car;
         }
     }
 }
