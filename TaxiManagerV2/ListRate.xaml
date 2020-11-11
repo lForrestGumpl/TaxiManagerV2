@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaxiManagerV2"
         mc:Ignorable="d"
-        Title="ListRate" Height="450" Width="800">
-    <Grid Margin="10">
+        Title="Тарифы" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="MainTaxi.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
+    <Grid Margin="10" Background="#FF2D2D30">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -22,7 +25,7 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="4" ItemsSource="{Binding Rates}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRate}" x:Name="rateGrid">
+        <DataGrid Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="4" ItemsSource="{Binding Rates}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRate}" x:Name="rateGrid" Background="#FF1C1C1C">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" IsReadOnly="True" Width="auto" Binding="{Binding IdRate}"/>
                 <DataGridTextColumn Header="Название тарифа"  IsReadOnly="True" Width="auto" Binding="{Binding Name }"/>

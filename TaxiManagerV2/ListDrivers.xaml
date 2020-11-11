@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:TaxiManagerV2"
         mc:Ignorable="d"
         Title="ListDrivers" Height="450" Width="800">
-    <Grid Margin="10">
+    <Window.Background>
+        <ImageBrush ImageSource="MainTaxi.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
+    <Grid Margin="10" Background="#FF2D2D30">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -22,7 +25,7 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="4" AutoGenerateColumns="False" ItemsSource="{Binding Drivers}" SelectedItem="{Binding SelectedDriver}" x:Name="driversGrid">
+        <DataGrid Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="4" AutoGenerateColumns="False" ItemsSource="{Binding Drivers}" SelectedItem="{Binding SelectedDriver}" x:Name="driversGrid" Background="#FF1C1C1C">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" IsReadOnly="True" Width="auto" Binding="{Binding Id_Driver}"/>
                 <DataGridTextColumn Header="Фамилия водителя"  IsReadOnly="True" Width="auto" Binding="{Binding Sname}"/>

@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:TaxiManagerV2"
         mc:Ignorable="d"
         Title="ListCar" Height="450" Width="800">
-    <Grid Margin="10">
+    <Window.Background>
+        <ImageBrush ImageSource="MainTaxi.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
+    <Grid Margin="10" Background="#FF2D2D30">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -23,7 +26,7 @@
             <ColumnDefinition />
 
         </Grid.ColumnDefinitions>
-        <DataGrid  x:Name="carGrid" Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="4" ItemsSource="{Binding CarsVM}"  AutoGenerateColumns="False" SelectedItem="{Binding SelectedCar}">
+        <DataGrid  x:Name="carGrid" Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="4" ItemsSource="{Binding CarsVM}"  AutoGenerateColumns="False" SelectedItem="{Binding SelectedCar}" Background="#FF1C1C1C">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" IsReadOnly="True" Width="auto" Binding="{Binding IdCar}"/>
                 <DataGridTextColumn Header="Марка"  IsReadOnly="True" Width="auto" Binding="{Binding MarkCar}"/>

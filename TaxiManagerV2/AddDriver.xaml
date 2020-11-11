@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaxiManagerV2"
         mc:Ignorable="d"
-        Title="AddDriver" Height="400" Width="600">
+        Title="AddDriver" Height="400" Width="500">
+    <Window.Background>
+        <ImageBrush ImageSource="MainTaxi.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -19,15 +22,15 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
-            <Label Content="Фамилия Водителя"/>
+            <Label Content="Фамилия Водителя" Foreground="White"/>
             <TextBox  Text="{Binding Sname}"/>
-            <Label Content="Имя Водителя"/>
+            <Label Content="Имя Водителя" Foreground="White"/>
             <TextBox Text="{Binding Fname}"/>
-            <Label Content="Год рождения"/>
+            <Label Content="Год рождения" Foreground="White"/>
             <TextBox Text="{Binding Birth}"/>
-            <Label Content="Стаж Вождения"/>
+            <Label Content="Стаж Вождения" Foreground="White"/>
             <TextBox Text="{Binding Y_drive}"/>
-            <Label Content="Номер Телефона"/>
+            <Label Content="Номер Телефона" Foreground="White"/>
             <TextBox Text="{Binding P_number}"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" VerticalAlignment="Center" >

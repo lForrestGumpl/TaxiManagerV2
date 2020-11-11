@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaxiManagerV2"
         mc:Ignorable="d"
-        Title="AddRate" Height="300" Width="600">
+        Title="Добавить/Редактировать" Height="350" Width="500">
+    <Window.Background>
+        <ImageBrush ImageSource="MainTaxi.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -18,15 +21,15 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
-            <Label Content="Название тарифа"/>
+            <Label Content="Название тарифа" Foreground="White"/>
             <TextBox  Text="{Binding Name}"/>
-            <Label Content="Дальность действия"/>
+            <Label Content="Дальность действия" Foreground="White"/>
             <TextBox Text="{Binding Range}"/>
-            <Label Content="Стоимость"/>
+            <Label Content="Стоимость" Foreground="White"/>
             <TextBox Text="{Binding Price}"/>
         </StackPanel>
-        <StackPanel VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
-            <Button   Content="Сохранить" Click="SaveButton_Click"/>
+        <StackPanel VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+            <Button   Content="Сохранить" Click="SaveButton_Click" />
         </StackPanel>
     </Grid>
 </Window>

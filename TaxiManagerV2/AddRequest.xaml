@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaxiManagerV2"
         mc:Ignorable="d"
-        Title="AddRequest" Height="400" Width="600">
+        Title="Добавить/Редактировать" Height="400" Width="500">
+    <Window.Background>
+        <ImageBrush ImageSource="MainTaxi.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -19,15 +22,15 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
-            <Label Content="Фамилия клиента"/>
+            <Label Content="Фамилия клиента" Foreground="White"/>
             <TextBox Text="{Binding Sname_Client}" />
-            <Label Content="Имя клиента"/>
+            <Label Content="Имя клиента" Foreground="White"/>
             <TextBox Text="{Binding Fname}"/>
-            <Label Content="Адрес"/>
+            <Label Content="Адрес" Foreground="White"/>
             <TextBox Text="{Binding Address}"/>
-            <Label Content="Водитель"/>
+            <Label Content="Водитель" Foreground="White"/>
             <ComboBox x:Name="comboDriver" DisplayMemberPath="Sname" SelectedValue="{Binding IdDriver}" SelectedValuePath="Id_Driver"/>
-            <Label Content="Номер Авто"/>
+            <Label Content="Номер Авто" Foreground="White"/>
             <ComboBox x:Name="comboCar" DisplayMemberPath="NumberCar" SelectedValue="{Binding IdCar}" SelectedValuePath="Id_Car"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" VerticalAlignment="Center" >

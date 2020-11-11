@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaxiManagerV2"
         mc:Ignorable="d"
-        Title="AddCar" Height="400" Width="600">
+        Title="Добавить/Редактировать" Height="400" Width="500">
+    <Window.Background>
+        <ImageBrush ImageSource="MainTaxi.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -19,17 +22,17 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
-            <Label Content="Марка"/>
+            <Label Content="Марка" Foreground="White"/>
             <TextBox Text="{Binding MarkCar}"/>
-            <Label Content="Кузов"/>
+            <Label Content="Кузов" Foreground="White"/>
             <TextBox Text="{Binding Bodywork}"/>
-            <Label Content="Цвет"/>
+            <Label Content="Цвет" Foreground="White"/>
             <TextBox Text="{Binding ColorCar}"/>
-            <Label Content="Номер"/>
+            <Label Content="Номер" Foreground="White"/>
             <TextBox Text="{Binding NumberCar}"/>
-            <Label Content="Водитель"/>
+            <Label Content="Водитель" Foreground="White"/>
             <ComboBox Name="comboDriver" DisplayMemberPath="Sname" SelectedValue="{Binding IdDriver}" SelectedValuePath="Id_Driver"/>
-            <Label Content="Статус"/>
+            <Label Content="Статус" Foreground="White"/>
             <TextBox Text="{Binding Status}"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" VerticalAlignment="Center" >

@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaxiManagerV2"
         mc:Ignorable="d"
-        Title="AddManager" Height="400" Width="600">
+        Title="Добавить/Редактировать" Height="400" Width="500">
+    <Window.Background>
+        <ImageBrush ImageSource="MainTaxi.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -19,13 +22,13 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
-            <Label Content="Имя"/>
+            <Label Content="Имя" Foreground="White"/>
             <TextBox Text="{Binding Fname}"/>
-            <Label Content="Фамилия"/>
+            <Label Content="Фамилия" Foreground="White"/>
             <TextBox Text="{Binding Sname}"/>
-            <Label Content="Статус"/>
+            <Label Content="Статус" Foreground="White"/>
             <TextBox Text="{Binding Status}"/>
-            <Label Content="Код переадресации"/>
+            <Label Content="Код переадресации" Foreground="White"/>
             <TextBox Text="{Binding RedirectionCode}"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" VerticalAlignment="Center" >
