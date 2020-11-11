@@ -70,7 +70,19 @@ namespace TaxiManagerV2
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var Drivers = DriverSql.GetDrivers();
+            var query =
+                  from driver in Drivers
+                  select new Driver
+                  {
+                      Id_Driver = driver.Id_Driver,
+                      Fname = driver.Fname,
+                      Birth = driver.Birth,
+                      Sname = driver.Sname,
+                      Y_drive = driver.Y_drive
+                      
+                  };
+            driversGrid.ItemsSource = query;
         }
     }
 }

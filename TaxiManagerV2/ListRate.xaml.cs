@@ -70,7 +70,16 @@ namespace TaxiManagerV2
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-           
+            var Rates = RateSql.GetRates();
+            var query =
+                  from rate in Rates
+                  select new Rate { 
+                      IdRate = rate.IdRate,
+                      Name =  rate.Name,
+                      Price = rate.Price,
+                      Range = rate.Range
+                  };
+            rateGrid.ItemsSource = query;
         }
     }
 }

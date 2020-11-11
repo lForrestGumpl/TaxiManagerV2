@@ -36,7 +36,7 @@
         </DataGrid>
         <StackPanel Grid.Column="2" Grid.Row="6" VerticalAlignment="Top">
             <Button Content="Добавить" Cursor="Hand" Margin="1 0 1 0" Click="AddButton_Click"/>
-            <Button Content="Обновить Таблицу" Cursor="Hand" Margin="1 0 1 0"/>
+            <Button Content="Обновить Таблицу" Cursor="Hand" Margin="1 0 1 0" Click="UpdateButton_Click"/>
         </StackPanel>
         
         <StackPanel Grid.Column="3" Grid.Row="6">

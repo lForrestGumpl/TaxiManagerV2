@@ -65,5 +65,21 @@ namespace TaxiManagerV2
             manager.Delete();
             Managers.Remove(manager);
         }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            var Managers = ManagerSql.GetManagers();
+            var query =
+                  from manager in Managers
+                  select new Manager
+                  {
+                      IdManager = manager.IdManager,
+                      Fname = manager.Fname,
+                      RedirectionCode = manager.RedirectionCode,
+                      Sname = manager.Sname,
+                      Status = manager.Status,
+                  };
+           managerGrid.ItemsSource = query;
+        }
     }
 }
