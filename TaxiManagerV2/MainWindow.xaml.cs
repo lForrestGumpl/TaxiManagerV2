@@ -24,14 +24,15 @@ namespace TaxiManagerV2
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private Request selectedRequest;
+        private RequestViewModel selectedRequest;
         public List<RequestViewModel> RequestsVM { get; set; }
-        public Request SelectedRequest
+        public RequestViewModel SelectedRequest
         {
             get => selectedRequest;
             set
             {
                 selectedRequest = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IdRequest"));
                 SignalChanged();
             }
         }
@@ -92,7 +93,7 @@ namespace TaxiManagerV2
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-           AddRequest addRequest = new AddRequest();
+            AddRequest addRequest = new AddRequest();
             if (addRequest.ShowDialog() == true)
             {
                 var Drivers = DriverSql.GetDrivers();
@@ -105,10 +106,10 @@ namespace TaxiManagerV2
                     Fname = addRequest.edit.Fname,
                     Address = addRequest.edit.Address,
                     Driver = Drivers.FirstOrDefault(x => x.Id_Driver == addRequest.edit.IdDriver).Sname,
-                    Car = Cars.FirstOrDefault(x=>x.Id_Car == addRequest.edit.IdCar).NumberCar
+                    Car = Cars.FirstOrDefault(x => x.Id_Car == addRequest.edit.IdCar).NumberCar
                 };
-
                 RequestsVM.Add(requestViewModel);
+
             }
         }
 
@@ -126,7 +127,26 @@ namespace TaxiManagerV2
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            //
+            var Requests = RequestSql.GetRequests();
+            var Drivers = DriverSql.GetDrivers();
+            var Cars = CarSql.GetCars();
+            var query =
+                from request in Requests
+                from driver in Drivers
+                from car in Cars
+                where request.IdDriver == driver.Id_Driver
+                where request.IdCar == car.Id_Car
+                select new RequestViewModel
+                {
+                    IdRequest = request.IdRequest,
+                    Sname_Client = request.Sname_Client,
+                    Fname = request.Fname,
+                    Address = request.Address,
+                    Driver = driver.Sname,
+                    Car = car.NumberCar
+                };
+            requestsGrid.ItemsSource = query;
+
         }
 
         private void PrintButton_Click(object sender, RoutedEventArgs e)
@@ -161,6 +181,121 @@ namespace TaxiManagerV2
                         mb.ExportToFile(file);
                         connect.Close();
                         MessageBox.Show("Резервная копия базы данных создана" + file);
+                    }
+                }
+            }
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            var textItemBox = comboSearch.SelectionBoxItem;
+            var TextSearch = textSearch.Text;
+            var Requests = RequestSql.GetRequests();
+            var Drivers = DriverSql.GetDrivers();
+            var Cars = CarSql.GetCars();
+            if (textItemBox.ToString() == "Введите Имя клиента")
+            {
+                if (TextSearch.Length == 0)
+                {
+                    MessageBox.Show("Сначала введите данные в поиск");
+                }
+                else
+                {
+                    var serRequest = Requests.Where(x => x.Fname.ToLower().Contains(TextSearch.ToLower()));
+                    if (serRequest.Count() == 0)
+                    {
+                        MessageBox.Show($"{TextSearch} не существует");
+                    }
+                    else
+                    {
+                        var query =
+                           from request in Requests
+                           from driver in Drivers
+                           from car in Cars
+                           where request.IdDriver == driver.Id_Driver
+                           where request.IdCar == car.Id_Car
+                           select new RequestViewModel
+                           {
+                               IdRequest = request.IdRequest,
+                               Sname_Client = request.Sname_Client,
+                               Fname = request.Fname,
+                               Address = request.Address,
+                               Driver = driver.Sname,
+                               Car = car.NumberCar
+                           };
+                        requestsGrid.ItemsSource = query;
+                        MessageBox.Show($"Клиенты с именем {TextSearch}");
+                    }
+                }
+              
+            }
+            if (textItemBox.ToString() == "Введите фамилию клиента")
+            {
+                if (TextSearch.Length == 0)
+                {
+                    MessageBox.Show("Сначала введите данные в поиск");
+                }
+                else
+                {
+                    var serRequest = Requests.Where(x => x.Sname_Client.ToLower().Contains(TextSearch.ToLower()));
+                    if (serRequest.Count() == 0)
+                    {
+                        MessageBox.Show($"{TextSearch} не существует");
+                    }
+                    else
+                    {
+                        var query =
+                           from request in Requests
+                           from driver in Drivers
+                           from car in Cars
+                           where request.IdDriver == driver.Id_Driver
+                           where request.IdCar == car.Id_Car
+                           select new RequestViewModel
+                           {
+                               IdRequest = request.IdRequest,
+                               Sname_Client = request.Sname_Client,
+                               Fname = request.Fname,
+                               Address = request.Address,
+                               Driver = driver.Sname,
+                               Car = car.NumberCar
+                           };
+                        requestsGrid.ItemsSource = query;
+                        MessageBox.Show($"Клиенты с фамиилей {TextSearch}");
+                    }
+                }
+            }
+            if (textItemBox.ToString() == "Введите водитель")
+            {
+                if (TextSearch.Length == 0)
+                {
+                    MessageBox.Show("Сначала введите данные в поиск");
+                }
+                else
+                {
+                    var serRequest = Drivers.Where(x => x.Sname.ToLower().Contains(TextSearch.ToLower()));
+                    if (serRequest.Count() == 0)
+                    {
+                        MessageBox.Show($"{TextSearch} не существует");
+                    }
+                    else
+                    {
+                        var query =
+                           from request in Requests
+                           from driver in Drivers
+                           from car in Cars
+                           where request.IdDriver == driver.Id_Driver
+                           where request.IdCar == car.Id_Car
+                           select new RequestViewModel
+                           {
+                               IdRequest = request.IdRequest,
+                               Sname_Client = request.Sname_Client,
+                               Fname = request.Fname,
+                               Address = request.Address,
+                               Driver = driver.Sname,
+                               Car = car.NumberCar
+                           };
+                        requestsGrid.ItemsSource = query;
+                        MessageBox.Show($"Заявки, выполненные водителем - {TextSearch}");
                     }
                 }
             }

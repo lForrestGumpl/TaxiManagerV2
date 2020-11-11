@@ -67,5 +67,10 @@ namespace TaxiManagerV2
             rate.Delete();
             Rates.Remove(rate);
         }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
     }
 }

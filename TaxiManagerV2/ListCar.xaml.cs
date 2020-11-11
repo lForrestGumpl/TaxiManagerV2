@@ -86,7 +86,8 @@ namespace TaxiManagerV2
         {
             if (carGrid.SelectedIndex == -1)
                 return;
-            Car car = (Car)carGrid.SelectedItem;
+            CarViewModel carViewModel = (CarViewModel)carGrid.SelectedItem;
+            Car car = CarSql.GetCarById(carViewModel.IdCar);
             AddCar addCar = new AddCar(car);
             addCar.ShowDialog();
         }
@@ -100,6 +101,29 @@ namespace TaxiManagerV2
             Car car = CarSql.GetCarById(carViewModel.IdCar);
             car.Delete();
             CarsVM.Remove(carViewModel);
+        }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            var Cars = CarSql.GetCars();
+            var Drivers = DriverSql.GetDrivers();
+            var query =
+                from car in Cars
+                from driver in Drivers
+                where car.IdDriver == driver.Id_Driver
+                select new CarViewModel
+                {
+                    IdCar = car.Id_Car,
+                    MarkCar = car.MarkCar,
+                    Bodywork = car.Bodywork,
+                    ColorCar = car.ColorCar,
+                    NumberCar = car.NumberCar,
+                    Status = car.Status,
+                    Driver = driver.Sname
+                };
+            //DataContext = this;
+            CarsVM = new List<CarViewModel>(query);
+            carGrid.ItemsSource = CarsVM;
         }
     }
 }

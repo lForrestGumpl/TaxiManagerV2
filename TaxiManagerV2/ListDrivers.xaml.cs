@@ -67,5 +67,10 @@ namespace TaxiManagerV2
             driver.Delete();
             Drivers.Remove(driver);
         }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
