@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaxiManagerV2"
         mc:Ignorable="d"
-        Title="AddDriver" Height="400" Width="500">
+        Title="AddDriver" Height="400" WindowStartupLocation="CenterScreen" Width="500">
     <Window.Background>
         <ImageBrush ImageSource="MainTaxi.jpg" Stretch="UniformToFill"/>
     </Window.Background>
