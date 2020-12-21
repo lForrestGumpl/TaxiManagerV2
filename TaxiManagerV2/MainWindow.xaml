@@ -38,6 +38,7 @@
             <MenuItem Header="Действия">
                 <MenuItem Header="Вывести на печать" Click="PrintButton_Click"/>
                 <MenuItem Header="Создать резервную копию" Click="BackupButton_Click"/>
+                <MenuItem Header="Импортировать" Click="ImportButton_Click"/>
             </MenuItem>
         </Menu>
         <DataGrid x:Name="requestsGrid" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="4" ItemsSource="{Binding Requests}"

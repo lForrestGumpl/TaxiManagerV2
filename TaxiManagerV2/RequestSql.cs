@@ -15,7 +15,6 @@ namespace TaxiManagerV2
             List<Request> result = new List<Request>();
             string sql = "SELECT id_request, sname, fname, address, id_driver, id_car FROM request_table"; //id_request, sname, fname, address, driver, car_number
             Request last = null;
-            //int requestid = 0;
             Dictionary<int, Request> requests = new Dictionary<int, Request>();
             if (OpenConnection())
             {

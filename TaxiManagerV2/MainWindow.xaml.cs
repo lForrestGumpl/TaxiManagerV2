@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -180,7 +181,34 @@ namespace TaxiManagerV2
                         connect.Open();
                         mb.ExportToFile(file);
                         connect.Close();
-                        MessageBox.Show("Резервная копия базы данных создана" + file);
+                        MessageBox.Show("Резервная копия базы данных создана" + ": " + file);
+                    }
+                }
+            }
+        }
+        private void ImportButton_Click(object sender, RoutedEventArgs e) 
+        {
+            string file = "backup.sql";
+            if (File.Exists(file) == false)
+            {
+                MessageBox.Show("Резервная копия БД отсутствует", "Внимание");
+                return;
+            }
+
+            string constring = "server=" + Properties.Settings.Default.server + ";database=" + Properties.Settings.Default.database + ";user=" + Properties.Settings.Default.login + ";pwd=" + Properties.Settings.Default.password + ";";
+            constring += "charset=utf8;convertzerodatetime=true;";
+
+            using (MySqlConnection connect = new MySqlConnection(constring))
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    using (MySqlBackup mb = new MySqlBackup(cmd))
+                    {
+                        cmd.Connection = connect;
+                        connect.Open();
+                        mb.ImportFromFile(file);
+                        connect.Close();
+                        MessageBox.Show("База данных импортирована");
                     }
                 }
             }
